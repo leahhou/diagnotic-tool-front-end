@@ -4,6 +4,8 @@ import RequestIdInput from "./RequestIdInput";
 import EnvFilter from "./EnvFilter";
 import TimeFilter from "./TimeFilter";
 import SearchSummary from "./Searchsummary";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
 
 const SearchForm = () => {
   let [requestId, setRequestId] = React.useState("");
@@ -21,8 +23,8 @@ const SearchForm = () => {
   };
 
   const search = () => {
-    //doing the api call
     console.log(requestId, envFilter, timeFilter);
+    //doing the api call
   };
 
   return (
@@ -42,7 +44,10 @@ const SearchForm = () => {
         </GridColumn>
       </Grid.Row>
       <Grid.Row>
-        <SearchSummary id={requestId} env={envFilter} time={timeFilter} />
+        {/* <SearchSummary id={requestId} env={envFilter} time={timeFilter} /> */}
+        {requestId}
+        {envFilter}
+        {timeFilter}
       </Grid.Row>
     </Grid>
   );
