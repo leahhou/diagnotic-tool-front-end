@@ -2,10 +2,8 @@
 
 ## Tech-Stack
 
-- Build in React, React Hook and Type Script
+- Build in React, React Hook and Typescript
 - GraphQL
-
-### `npm start`
 
 ## How to boost a sample-backend locally to test the front-ent
 
