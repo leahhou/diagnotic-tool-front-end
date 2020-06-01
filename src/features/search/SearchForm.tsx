@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Grid, Button, GridColumn } from "semantic-ui-react";
 import RequestIdInput from "./RequestIdInput";
 import EnvFilter from "./EnvFilter";
@@ -7,13 +7,13 @@ import SearchSummary from "./Searchsummary";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
-const SearchForm = () => {
+const SearchForm = ({ setAllFilters }) => {
   let [requestId, setRequestId] = React.useState("");
   let [envFilter, setEnvFilter] = React.useState("");
   let [timeFilter, setTimeFilter] = React.useState("");
 
-  const getRequestId = requestId => {
-    setRequestId(requestId);
+  const getRequestId = id => {
+    setRequestId(id);
   };
   const getEnvFilter = envOnSelect => {
     setEnvFilter(envOnSelect);
@@ -22,16 +22,15 @@ const SearchForm = () => {
     setTimeFilter(timeOnSelect);
   };
 
-  const search = () => {
-    console.log(requestId, envFilter, timeFilter);
-    //doing the api call
+  const getAllFilters = () => {
+    setAllFilters(requestId, envFilter, timeFilter);
   };
 
   return (
     <Grid>
       <Grid.Row stretched>
         <Grid.Column width={9}>
-          <RequestIdInput setRequestId={getRequestId} />
+          <RequestIdInput setId={getRequestId} />
         </Grid.Column>
         <Grid.Column width={2}>
           <EnvFilter setEnvFilter={getEnvFilter} />
@@ -40,14 +39,16 @@ const SearchForm = () => {
           <TimeFilter setTimeFilter={getTimeFilter} />
         </Grid.Column>
         <GridColumn width={2}>
-          <Button onClick={search} positive content="Search" />
+          <Button onClick={getAllFilters} positive content="Search" />
         </GridColumn>
       </Grid.Row>
       <Grid.Row>
         {/* <SearchSummary id={requestId} env={envFilter} time={timeFilter} /> */}
+        In Search Form: ---------
         {requestId}
         {envFilter}
         {timeFilter}
+        ------
       </Grid.Row>
     </Grid>
   );

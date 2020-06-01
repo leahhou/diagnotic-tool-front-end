@@ -4,18 +4,12 @@ import { Dropdown, Container, Input } from "semantic-ui-react";
 // export interface IProp {
 //   addEnv: () => void;
 // }
+
 const EnvFilter = ({ setEnvFilter }) => {
-  let [env, setEnv] = React.useState("");
-
-  const getEnv = (event, data) => {
-    setEnv(data.value);
-    setEnvFilter(data.value);
-  };
-
   return (
     <Dropdown
       compact
-      onChange={getEnv}
+      onChange={(event, data) => setEnvFilter(data.value)}
       placeholder="environment"
       selection
       options={envOptions}

@@ -24,10 +24,12 @@ const complianceJson = [
   }
 ];
 
-const ComplianceResults = () => {
+const ComplianceResults = ({ id, env, time }) => {
   let [results, setResult] = React.useState(complianceJson);
   return (
     <Tab.Pane>
+      In Result-------
+      {id} {env} {time}------
       <Item.Group divided>
         {results.map(result => (
           <Item>

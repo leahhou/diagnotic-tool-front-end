@@ -6,16 +6,10 @@ import { Dropdown, Container } from "semantic-ui-react";
 // }
 
 const TimeFilter = ({ setTimeFilter }) => {
-  let [time, setTime] = React.useState("");
-
-  const getTime = (event, data) => {
-    setTime(data.value);
-    setTimeFilter(data.value);
-  };
   return (
     <Dropdown
       compact
-      onChange={getTime}
+      onChange={(event, data) => setTimeFilter(data.value)}
       placeholder="filter by time"
       selection
       search
