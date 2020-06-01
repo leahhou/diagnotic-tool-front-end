@@ -4,8 +4,6 @@ import RequestIdInput from "./RequestIdInput";
 import EnvFilter from "./EnvFilter";
 import TimeFilter from "./TimeFilter";
 import SearchSummary from "./Searchsummary";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
 
 const SearchForm = ({ setAllFilters }) => {
   let [requestId, setRequestId] = React.useState("");

@@ -6,13 +6,12 @@ import ComplianceResults from "../../features/results/ComplianceResults";
 import ResultTabs from "../../features/results/ResultTabs";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import { all } from "q";
 
 const App = () => {
   let [id, setId] = React.useState("");
   let [env, setEnv] = React.useState("");
   let [time, setTime] = React.useState("");
-  const clientParam = { uri: "/graphql" };
+  const clientParam = { uri: "http://localhost:5000/graphql" };
   const client = new ApolloClient(clientParam);
 
   const getFilters = (id, env, time) => {
@@ -24,20 +23,16 @@ const App = () => {
     <Fragment>
       <NavBar />
       <Container style={{ marginTop: "6em" }}>
+        <SearchForm setAllFilters={getFilters} />
+      </Container>
+      <Container style={{ marginTop: "1em" }}>
         <ApolloProvider client={client}>
-          <SearchForm setAllFilters={getFilters} />
+          <ComplianceResults id={id} env={env} time={time} />
         </ApolloProvider>
       </Container>
-      In App: ---------
-      {id}
-      {env}
-      {time} -------
-      <Container style={{ marginTop: "1em" }}>
-        <ComplianceResults id={id} env={env} time={time} />
-      </Container>
-      <Container style={{ marginTop: "1em" }}>
+      {/* <Container style={{ marginTop: "1em" }}>
         <ResultTabs />
-      </Container>
+      </Container> */}
     </Fragment>
   );
 };
