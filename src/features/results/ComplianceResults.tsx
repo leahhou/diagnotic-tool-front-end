@@ -5,8 +5,8 @@ import { gql } from "apollo-boost";
 
 // const query = gql`
 //   {
-//     compliance(requestId: "requestId") {
-//       env
+//     compliance(requestId: "Name1", environment: "Test1") {
+//       environment
 //       clientId
 //       tenantId
 //       createDate
@@ -17,19 +17,16 @@ import { gql } from "apollo-boost";
 
 const query = gql`
   {
-    compliance(id: 1) {
-      name
+    compliance(requestId: "Name1", environment: "Test1", createDate: "Date1") {
+      requestId
+      environment
+      createDate
+      clientId
+      tenantId
+      details
     }
   }
 `;
-
-// const query = gql`
-//   {
-//     author(id: 1) {
-//       name
-//     }
-//   }
-// `;
 
 const ComplianceResults = ({ id, env, time }) => {
   // let [results, setResult] = React.useState(complianceJson);
@@ -44,7 +41,14 @@ const ComplianceResults = ({ id, env, time }) => {
   ) : !compliance ? (
     <div>loading...</div>
   ) : (
-    <div>Data: {compliance.name}</div>
+    <div>
+      Data: {compliance.requestId}
+      {compliance.environment}
+      {compliance.createDate}
+      {compliance.clientId}
+      {compliance.tenantId}
+      {compliance.details}
+    </div>
   );
 
   // return runningQuery.error ? (
